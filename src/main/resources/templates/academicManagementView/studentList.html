@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="content" layout:fragment="content">
+        <h1>학생목록</h1>
+    <table class="table" >
+        <tr>
+            <th>학번</th>
+            <th>이름</th>
+            <th>학년</th>
+            <th>반</th>
+            <th>번호</th>
+            <th>성별</th>
+            <th>전화번호</th>
+            <th>주소</th>
+        </tr>
+        <tr th:each="listDto : ${studentDtoList}" th:object="${listDto}">
+            <td th:text="*{studentNo}"></td>
+            <td th:text="*{name}"></td>
+            <td th:text="${#strings.substring(listDto.studentNo,0,1)}"></td>
+            <td th:text="${#strings.substring(listDto.studentNo,1,3)}"></td>
+            <td th:text="${#strings.substring(listDto.studentNo,3)}"></td>
+            <td th:switch="${#strings.toString(listDto.gender)}">
+                <span th:case="M">남</span>
+                <span th:case="F">여</span>
+            </td>
+            <td th:text="*{phone}"></td>
+            <td th:text="*{address}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

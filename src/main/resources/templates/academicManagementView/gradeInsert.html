@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/academicManagementView/insert}" method="post" class="container" layout:fragment="content" th:object = "${examDto}">
+    <h1>성적입력</h1>
+    <div class="mb3">
+        <label class="form-label">학번</label>
+        <input type="text" class="form-control" th:field="*{examNo}">
+        <span th:errors="*{examNo}"></span>
+    </div>
+    <div class="mb3">
+        <label class="form-label">국어 점수</label>
+        <textarea class="form-control" th:field="*{kor}"></textarea>
+        <span th:errors="*{kor}"></span>
+    </div>
+    <div class="mb3">
+        <label class="form-label">수학 점수</label>
+        <textarea class="form-control" th:field="*{math}"></textarea>
+        <span th:errors="*{math}"></span>
+    </div>
+    <div class="mb3">
+        <label class="form-label">영어 점수</label>
+        <textarea class="form-control" th:field="*{eng}"></textarea>
+        <span th:errors="*{eng}"></span>
+    </div>
+    <div class="mb3">
+        <label class="form-label">역사 점수</label>
+        <textarea class="form-control" th:field="*{hist}"></textarea>
+        <span th:errors="*{hist}"></span>
+    </div>
+    <input type="submit" value="저장" class="btn btn-primary">
+</form>
+</div>
+</body>
+</html>
