@@ -89,15 +89,19 @@ public class ManageService {
         for (int i=0; i<studentDtoList.size(); i++) {
             int firstTotal;
             firstTotal = studentDtoList.get(i).getTotal();
-            log.info("1 : "+String.valueOf(firstTotal));
-            for (int j = 0; j < studentDtoList.size(); j++) {
-                if (firstTotal < studentDtoList.get(j).getTotal()) {
-                    rank = studentDtoList.get(i).getRank() + 1;
-                    studentDtoList.get(i).setRank(rank);
-                } else {
-                    break;
+            if(firstTotal == 0){
+                studentDtoList.get(i).setRank(0);
+            }else {
+                log.info("1 : " + String.valueOf(firstTotal));
+                for (int j = 0; j < studentDtoList.size(); j++) {
+                    if (firstTotal < studentDtoList.get(j).getTotal()) {
+                        rank = studentDtoList.get(i).getRank() + 1;
+                        studentDtoList.get(i).setRank(rank);
+                    } else {
+                        break;
+                    }
+                    log.info("2 :" + String.valueOf(rank));
                 }
-                log.info("2 :"+String.valueOf(rank));
             }
         }
         log.info("3"+studentDtoList.toString());
